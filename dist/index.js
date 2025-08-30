@@ -77212,7 +77212,7 @@ async function doExport() {
         if (USE_GODOT_3 && !EXPORT_PACK_ONLY) {
             exportFlag = EXPORT_DEBUG ? '--export-debug' : '--export';
         }
-        let args = [GODOT_PROJECT_FILE_PATH, '--headless', exportFlag, preset.name, executablePath];
+        let args = [GODOT_PROJECT_FILE_PATH, exportFlag, preset.name, executablePath];
         if (USE_GODOT_3) {
             args = args.filter(x => x !== '--headless');
         }
@@ -77341,7 +77341,7 @@ async function importProject() {
     core.startGroup('🎲 Import project');
     // this import tends to fail on MacOS for some reason (exit code 1), but a fail here doesn't necessarily mean the export will fail
     try {
-        await (0,exec.exec)(godotExecutablePath, [GODOT_PROJECT_FILE_PATH, '--headless', '--import']);
+        await (0,exec.exec)(godotExecutablePath, [GODOT_PROJECT_FILE_PATH, '--import']);
     }
     catch (error) {
         core.warning(`Import appears to have failed. Continuing anyway, but exports may fail. ${error}`);
